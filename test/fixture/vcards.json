@@ -1,0 +1,12 @@
+[
+  {
+    "url": "/carddav/v1/principals/imaptest73@gmail.com/lists/default/5f579709888af049",
+    "etag": "\"2015-08-21T09:00:07.457-07:00\"",
+    "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:;Test;;;\r\nFN:Test\r\nNICKNAME:This is a test\r\nORG:This is a test\r\nREV:2015-08-21T16:00:07Z\r\nUID:5f579709888af049\r\nitem2.TEL:thisisatest\r\nitem1.EMAIL;TYPE=PREF:this@is.test\r\nitem1.X-ABLabel:\r\nitem2.X-ABLabel:\r\nEND:VCARD\r\n"
+  },
+  {
+    "url": "/carddav/v1/principals/imaptest73@gmail.com/lists/default/1742e6128980c7d7",
+    "etag": "\"2015-08-21T08:13:47.139-07:00\"",
+    "vcard": "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Test;This;I Another;;\r\nFN:This I Another Test\r\nNICKNAME:This I Another Test\r\nORG:This I Another Test\r\nREV:2015-08-21T15:13:47Z\r\nUID:1742e6128980c7d7\r\nitem1.EMAIL;TYPE=PREF:ThisIs@Another.ts\r\nitem1.X-ABLabel:\r\nEND:VCARD\r\n"
+  }
+]
