@@ -5,7 +5,7 @@
   "bugs": {
     "url": "https://github.com/parro-it/google-carddav/issues"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "dependencies": {
     "access-token": "^0.2.2",
