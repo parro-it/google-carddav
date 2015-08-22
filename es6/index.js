@@ -1,10 +1,11 @@
-const fetch = global.fetch || require('node-fetch');
+// const fetch = global.fetch || require('node-fetch');
+import nodeFetch from 'node-fetch';
 import convert from 'xml-json';
 import concat from 'concat-stream';
 import { Agent } from 'https';
 
 
-export default ({server, token, refreshToken}) => {
+export default ({server, token, opts={}}) => {
   const agent = new Agent({
     keepAlive: true
   });
@@ -22,7 +23,7 @@ export default ({server, token, refreshToken}) => {
       Authorization: `Bearer ${token}`
     }, headers);
 
-    return fetch(url, {method, headers: _headers, body, agent});
+    return nodeFetch(url, Object.assign(opts.fetch || {}, {method, headers: _headers, body, agent}));
   };
 
   async function _responseAsJSON(res, prop) {
