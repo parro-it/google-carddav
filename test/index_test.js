@@ -5,33 +5,46 @@ if (process.env.TEST_RELEASE) {
 
 
 // should be a valid oauth2 access token
+// in json format as per https://github.com/cayasso/access-token
 // with access granted to scope https://www.googleapis.com/auth/carddav
-const accessToken = process.env.GOOGLE_ACCESS_TOKEN;
-const opts = {
-  server: 'https://www.googleapis.com',
-  token: accessToken
-};
 
-const googleCarddav = require(moduleRoot)(opts);
-
+import tokenData from '../private/google.json';
+import AccessToken from 'access-token';
 
 import testVCard from './fixture/vcards.json';
+import thenify from 'thenify';
+
+const accessToken = new AccessToken(tokenData);
+const token = accessToken.token(tokenData.token);
+
+const getToken = thenify(token.get).bind(token);
+
+const _googleCarddav = require(moduleRoot);
+
 
 describe('googleCarddav', function googleCarddavTest() {
   this.timeout(60000);
 
-
+  let googleCarddav;
   let account;
   let addresses;
 
   before(async () => {
-    account = await googleCarddav.discoverAccount(opts);
+    const freshToken = await getToken();
+    const opts = {
+      server: 'https://www.googleapis.com',
+      token: freshToken[0].access_token
+    };
+    googleCarddav = _googleCarddav(opts);
+
+
+    account = await googleCarddav.discoverAccount();
     addresses = await googleCarddav.listAddressBooks({
       addressbookHomeSet: account.addressbookHomeSet
     });
   });
 
-  it.only('> discoverAccount find account details', () => {
+  it('> discoverAccount find account details', () => {
     account.should.be.deep.equal({
       principalURL: '/carddav/v1/principals/imaptest73@gmail.com/',
       currentUserPrincipal: '/carddav/v1/principals/imaptest73@gmail.com',
