@@ -51,7 +51,6 @@ export default ({server, token, refreshToken}) => {
   }
 
 
-
   function fetchPropFind(url, props, depth = 0) {
     const body = `<?xml version="1.0"?>
         <d:propfind xmlns:d="DAV:" xmlns:card="urn:ietf:params:xml:ns:carddav">
